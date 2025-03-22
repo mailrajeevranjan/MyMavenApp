@@ -2,8 +2,15 @@
 - name: Deploy Maven Artifact
   hosts: local
   become: yes
+  remote_user: devops
 
   tasks:
+    - name: Disable problematic PPA
+      shell: |
+        sudo add-apt-repository --remove ppa:cwchien/gradle
+        sudo apt update
+      when: ansible_facts.os_family == 'Debian'  # Only run on Debian-based systems
+
     - name: Copy the artifact to the deployment directory
       copy:
         src: "./target/*-1.0-SNAPSHOT.jar"
