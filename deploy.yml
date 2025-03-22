@@ -1,0 +1,10 @@
+---
+- name: Deploy Maven Artifact
+  hosts: local
+  become: yes
+
+  tasks:
+    - name: Copy the artifact to the deployment directory
+      copy:
+        src: "./target/*-1.0-SNAPSHOT.jar"
+        dest: "/tmp/SNAPSHOT.jar"
