@@ -2,7 +2,7 @@
 - name: Deploy Maven Artifact
   hosts: local
   become: yes
-  remote_user: devops
+  become_user: devops
 
   tasks:
     - name: Disable problematic PPA
