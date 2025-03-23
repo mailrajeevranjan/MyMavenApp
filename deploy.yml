@@ -11,11 +11,11 @@
         #sudo apt update
       #when: ansible_facts.os_family == 'Debian'  # Only run on Debian-based systems
       
-    - name: Ensure target directory exists
-      file:
-        path: "/tmp"
-        state: directory
-        mode: '0755'
+    #- name: Ensure target directory exists
+     # file:
+       # path: "/tmp"
+       # state: directory
+       # mode: '0755'
 
     - name: Check if the artifact exists
       stat:
@@ -30,5 +30,5 @@
     - name: Copy the artifact to the deployment directory
       copy:
         src: "/var/lib/jenkins/workspace/Maven-Git-Jenkins-Ansible-FreeStyle/target/MyMavenApp-1.0-SNAPSHOT.jar"
-        dest: "/tmp/SNAPSHOT.jar"
+        dest: "/home/devops/Ansible-Deploy-Test-SNAPSHOT.jar"
 
