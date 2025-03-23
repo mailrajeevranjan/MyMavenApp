@@ -14,5 +14,5 @@
 
     - name: Copy the artifact to the deployment directory
       copy:
-        src: "./target/MyMavenApp-1.0-SNAPSHOT.jar"
+        src: "/var/lib/jenkins/workspace/Maven-Git-Jenkins-Ansible-FreeStyle/target/MyMavenApp-1.0-SNAPSHOT.jar"
         dest: "/tmp/SNAPSHOT.jar"
