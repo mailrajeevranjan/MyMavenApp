@@ -1,11 +1,16 @@
 ---
 - name: Deploy Maven Artifact
   hosts: local
-  gather_facts: false
   become: yes
   become_user: devops
 
   tasks:
+     #- name: Disable problematic PPA
+      #shell: |
+        #sudo add-apt-repository --remove ppa:cwchien/gradle
+        #sudo apt update
+      #when: ansible_facts.os_family == 'Debian'  # Only run on Debian-based systems
+      
     - name: Ensure target directory exists
       file:
         path: "/tmp"
@@ -26,3 +31,4 @@
       copy:
         src: "/var/lib/jenkins/workspace/Maven-Git-Jenkins-Ansible-FreeStyle/target/MyMavenApp-1.0-SNAPSHOT.jar"
         dest: "/tmp/SNAPSHOT.jar"
+
