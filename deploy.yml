@@ -14,5 +14,5 @@
 
     - name: Copy the artifact to the deployment directory
       copy:
-        src: "/home/devops/MyMavenApp/target/MyMavenApp-1.0-SNAPSHOT.jar"
+        src: "./target/MyMavenApp-1.0-SNAPSHOT.jar"
         dest: "/tmp/SNAPSHOT.jar"
