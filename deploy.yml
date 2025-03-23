@@ -6,11 +6,21 @@
   become_user: devops
 
   tasks:
-    #- name: Disable problematic PPA
-      #shell: |
-        #sudo add-apt-repository --remove ppa:cwchien/gradle
-        #sudo apt update
-      #when: ansible_facts.os_family == 'Debian'  # Only run on Debian-based systems
+    - name: Ensure target directory exists
+      file:
+        path: "/tmp"
+        state: directory
+        mode: '0755'
+
+    - name: Check if the artifact exists
+      stat:
+        path: "/var/lib/jenkins/workspace/Maven-Git-Jenkins-Ansible-FreeStyle/target/MyMavenApp-1.0-SNAPSHOT.jar"
+      register: artifact_stat
+
+    - name: Fail if the artifact does not exist
+      fail:
+        msg: "The artifact file does not exist!"
+      when: not artifact_stat.stat.exists
 
     - name: Copy the artifact to the deployment directory
       copy:
